@@ -1,103 +1,584 @@
 <!DOCTYPE html>
+
 <html lang="ar" dir="rtl">
+
 <head>
+
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <title>Faro9sus</title>
+
   <style>
+
     body {
+
       margin: 0;
+
       padding: 0;
+
       font-family: 'Segoe UI', sans-serif;
+
       background: linear-gradient(270deg, #a10000, #4a90e2, #a10000, #4a90e2);
+
       background-size: 800% 800%;
+
       animation: gradientBG 15s ease infinite;
+
       color: white;
+
       text-align: center;
+
       direction: rtl;
+
+      overflow: hidden;
+
     }
+
     @keyframes gradientBG {
+
       0% { background-position: 0% 50%; }
+
       50% { background-position: 100% 50%; }
+
       100% { background-position: 0% 50%; }
+
     }
+
     .container {
+
       max-width: 90%;
+
       margin: auto;
+
       padding: 20px;
+
     }
+
     .profile-img {
+
       width: 120px;
+
       height: 120px;
+
       border-radius: 50%;
+
       object-fit: cover;
+
       margin-bottom: 15px;
+
       border: 3px solid #aaa;
+
     }
+
     h1 {
+
       margin: 0;
+
       font-size: 28px;
+
       color: #a10000;
+
     }
+
     .desc {
+
       font-size: 18px;
+
       color: #ddd;
+
       margin-bottom: 25px;
+
     }
+
     .links a {
+
       display: block;
+
       background-color: #111;
+
       color: white;
+
       text-decoration: none;
+
       padding: 15px;
+
       margin: 10px 0;
+
       border-radius: 12px;
+
       font-size: 17px;
+
       transition: 0.3s;
+
     }
+
     .links a:hover {
+
       background-color: #333;
+
     }
+
     .footer {
+
       margin-top: 50px;
+
       font-size: 14px;
+
       color: #aaa;
+
     }
+
     @media (max-width: 400px) {
+
       .profile-img {
+
         width: 90px;
+
         height: 90px;
+
       }
+
       h1 {
+
         font-size: 24px;
+
       }
+
       .desc {
+
         font-size: 16px;
+
       }
+
       .links a {
+
         font-size: 15px;
+
         padding: 12px;
+
       }
+
     }
+
+
+
+    /* شاشة تسجيل الدخول */
+
+    #login-screen {
+
+      position: fixed;
+
+      top: 0; left: 0;
+
+      width: 100%;
+
+      height: 100%;
+
+      background: linear-gradient(270deg, #87cefa, #1e3c72, #87cefa, #1e3c72);
+
+      background-size: 800% 800%;
+
+      animation: gradientBlue 15s ease infinite;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      z-index: 9999;
+
+      pointer-events: auto;
+
+      backdrop-filter: brightness(0.8);
+
+      opacity: 1;
+
+      transition: opacity 0.8s ease;
+
+    }
+
+    #login-box {
+
+      background: #1e1e1e;
+
+      padding: 40px 30px;
+
+      border-radius: 15px;
+
+      box-shadow: 0 0 30px rgba(0,0,0,0.8);
+
+      text-align: center;
+
+      width: 300px;
+
+      position: relative;
+
+      border: 2px solid gray;
+
+      animation: slideUp 1s ease;
+
+    }
+
+    #login-box input {
+
+      width: 100%;
+
+      padding: 10px;
+
+      margin-bottom: 15px;
+
+      border: none;
+
+      border-radius: 5px;
+
+      font-size: 16px;
+
+    }
+
+    #login-box button {
+
+      padding: 10px 20px;
+
+      border: none;
+
+      border-radius: 5px;
+
+      background: #f39c12;
+
+      color: white;
+
+      font-weight: bold;
+
+      cursor: pointer;
+
+      font-size: 16px;
+
+    }
+
+    #login-box img {
+
+      width: 80px;
+
+      height: 80px;
+
+      border-radius: 50%;
+
+      margin-bottom: 15px;
+
+      border: 2px solid #888;
+
+      object-fit: cover;
+
+    }
+
+    #error-message {
+
+      color: #f44336;
+
+      margin-top: 10px;
+
+      display: none;
+
+      font-size: 14px;
+
+    }
+
+    /* رسالة ترحيب */
+
+    #welcome-message {
+
+      display: none;
+
+      position: fixed;
+
+      top: 20px;
+
+      left: 50%;
+
+      transform: translateX(-50%);
+
+      background: #1e1e1e;
+
+      color: #fff;
+
+      padding: 15px 25px;
+
+      border-radius: 10px;
+
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+
+      font-size: 18px;
+
+      z-index: 9999;
+
+      animation: fadeIn 0.5s ease;
+
+    }
+
+    /* انيميشن */
+
+    @keyframes slideUp {
+
+      from {transform: translateY(50px); opacity: 0;}
+
+      to {transform: translateY(0); opacity: 1;}
+
+    }
+
+    @keyframes fadeIn {
+
+      from {opacity: 0;}
+
+      to {opacity: 1;}
+
+    }
+
+    @keyframes shake {
+
+      0% { transform: translateX(0); }
+
+      20% { transform: translateX(-8px); }
+
+      40% { transform: translateX(8px); }
+
+      60% { transform: translateX(-6px); }
+
+      80% { transform: translateX(6px); }
+
+      100% { transform: translateX(0); }
+
+    }
+
+    .shake {
+
+      animation: shake 0.5s;
+
+    }
+
+    @keyframes gradientBlue {
+
+      0% { background-position: 0% 50%; }
+
+      50% { background-position: 100% 50%; }
+
+      100% { background-position: 0% 50%; }
+
+    }
+
+    /* انيميشن النزول والتلاشي */
+
+    @keyframes slideDownFadeOut {
+
+      0% {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+      }
+
+      100% {
+
+        opacity: 0;
+
+        transform: translateY(100vh);
+
+      }
+
+    }
+
   </style>
+
 </head>
+
 <body>
+
+
+
+  <!-- واجهة الموقع -->
+
   <div class="container">
-    <img src="https://i.postimg.cc/jd2BM8TG/image.png" class="profile-img" alt="Faro9sus Logo">
+
+    <img src="https://i.postimg.cc/jd2BM8TG/image.png" class="profile-img" alt="Faro9sus Logo" />
+
     <h1>Faro9sus</h1>
+
     <div class="desc">Minecraft java on mobile</div>
 
     <div class="links">
+
       <a href="https://www.tiktok.com/@faro9sus?_t=ZS-8xyajBvhqwJ&_r=1" target="_blank">TikTok</a>
+
       <a href="https://discord.gg/y5Cm9F3v" target="_blank">Discord</a>
+
       <a href="https://www.mediafire.com/file/s9nc4kggz729dru/Pojav-Glow-Worm-20250419-all.apk/file" target="_blank">Launcher</a>
+
       <a href="https://www.mediafire.com/file/9l24itmhznhu389/Faro9sus_control_.json/file" target="_blank">Control</a>
+
     </div>
 
     <div class="footer">
-      ⬤ هذا الموقع من تصميم osamagamer50<br>
+
+      ⬤ هذا الموقع من تصميم osamagamer50<br />
+
       ⓘ Made with ♥
+
     </div>
+
   </div>
+
+
+
+  <!-- شاشة تسجيل الدخول -->
+
+  <div id="login-screen">
+
+    <div id="login-box">
+
+      <div style="color:#ccc; font-size:14px; margin-bottom:10px; font-weight: normal;">
+
+        اكتب اي شي عشان تسجل
+
+      </div>
+
+      <img src="https://i.postimg.cc/jd2BM8TG/image.png" alt="Logo" />
+
+      <h2>تسجيل الدخول</h2>
+
+      <input type="text" id="username" placeholder="اسم المستخدم" />
+
+      <input type="password" id="password" placeholder="كلمة المرور" />
+
+      <button onclick="enterSite()">دخول</button>
+
+      <div id="error-message">⚠️ الرجاء تعبئة جميع الحقول</div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- رسالة ترحيب -->
+
+  <div id="welcome-message">
+
+    أهلًا بك في <strong>Faro9sus</strong> 💫
+
+  </div>
+
+
+
+  <!-- صوت خطأ -->
+
+  <audio id="error-sound" src="https://www.soundjay.com/buttons/sounds/beep-07.mp3" preload="auto"></audio>
+
+
+
+  <script>
+
+    function enterSite() {
+
+      const username = document.getElementById("username").value.trim();
+
+      const password = document.getElementById("password").value.trim();
+
+      const errorMessage = document.getElementById("error-message");
+
+      const loginBox = document.getElementById("login-box");
+
+      const loginScreen = document.getElementById("login-screen");
+
+      const errorSound = document.getElementById("error-sound");
+
+      const welcome = document.getElementById("welcome-message");
+
+
+
+      if (username === "" || password === "") {
+
+        errorMessage.style.display = "block";
+
+        errorSound.play();
+
+        loginBox.classList.add("shake");
+
+        setTimeout(() => {
+
+          loginBox.classList.remove("shake");
+
+        }, 500);
+
+        return;
+
+      }
+
+
+
+      errorMessage.style.display = "none";
+
+
+
+      // انيميشن نزول المربع وتلاشي الخلفية
+
+      loginBox.style.animation = "slideDownFadeOut 0.8s forwards";
+
+      loginScreen.style.transition = "opacity 0.8s ease";
+
+      loginScreen.style.opacity = "0";
+
+
+
+      loginBox.addEventListener("animationend", () => {
+
+        loginScreen.style.display = "none";
+
+        document.body.style.overflow = "auto";
+
+
+
+        if (username === "Faro9sus") {
+
+          // رسالة ترحيب أقوى + فتح الرابط فجأة
+
+          welcome.innerHTML = `✨ منور أفضل شخص وصاحب أفضل موقع بجوجل يا <strong>${username}</strong>! 💫`;
+
+          welcome.style.display = "block";
+
+
+
+          // افتح الرابط في نافذة جديدة
+
+          window.open("https://www.tiktok.com/@faro9sus?_t=ZS-8xyajBvhqwJ&_r=1", "_blank");
+
+        } else {
+
+          // رسالة ترحيب عادية
+
+          welcome.innerHTML = `أهلًا بك يا <strong>${username}</strong> 💫`;
+
+          welcome.style.display = "block";
+
+        }
+
+
+
+        setTimeout(() => {
+
+          welcome.style.display = "none";
+
+        }, 400000);
+
+      }, { once: true });
+
+    }
+
+  </script>
+
 </body>
+
 </html>
+
